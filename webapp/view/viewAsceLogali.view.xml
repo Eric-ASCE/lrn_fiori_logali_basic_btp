@@ -1,0 +1,9 @@
+<mvc:View controllerName="invascelogali.invoiceascelogali.controller.viewAsceLogali"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <Text id="v1-txt" text="Asce text"></Text>
+        </content >
+    </Page>
+</mvc:View>
