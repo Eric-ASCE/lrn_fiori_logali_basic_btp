@@ -1,9 +1,45 @@
 <mvc:View controllerName="invascelogali.invoiceascelogali.controller.viewAsceLogali"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    >
     <Page id="page" title="{i18n>title}">
         <content>
-            <Text id="v1-txt" text="Asce text"></Text>
+            <Panel id="panel-sel-scr1" headerText="{i18n>i18selScreen}">
+                <Label id="lblShipName" labelFor="InpShipName" text="{i18n>i18selShipName}" class="sapUiSmallMargin"/>
+                <Input id="InpShipName" value="{ctrlselectionScreen>/shipName}" width="200px" class="sapUiMarginEnd"/>   
+
+                <Label id="lblCountry" text="{i18n>i18Country}" class="sapUiSmallMargin"/>
+                <Select id="selectCountry" selectedKey="{ctrlselectionScreen>/CountryKey}" 
+                        forceSelection="false" items="{ctrlselectionScreen>/Countries}"
+                        >
+                    <items>
+                        <core:Item  key="{ctrlselectionScreen>key}" text="{ctrlselectionScreen>text}"/>
+                    </items>
+                </Select>
+                <!-- iconos de SAP -->
+    <!-- https://sapui5.hana.ondemand.com/sdk/test-resources/sap/m/demokit/iconExplorer/webapp/index.html -->
+                <Button id="btnFilter" text="{i18n>i18btnFilter}" icon="sap-icon://filter" 
+                        press="onFilter" class="sapUiSmallMarginEnd"/>
+
+                <Button id="btnClrearFilter" text="{i18n>i18btnClearFilter}" icon="sap-icon://clear-filter" 
+                        press="onClearFilter" class="sapUiSmallMarginEnd"/>
+            </Panel>
+
+            <Panel id="pnlInvoices">
+            <List id="invoicesLisst" headerText="{i18n>i18invoicesList}" class="sapUiResponsiveMargin" 
+            width="auto" items="{/Invoices}">
+                <items>
+                    <ObjectListItem  title="{ShipName} - {Country}" 
+                    number="{ parts : [ {path: 'ExtendedPrice'}, {path: 'ctrlselectionScreen>/Currency'} ], type: 'sap.ui.model.type.Currency', formatOptions: { showMeasure: false } }"
+                    numberUnit="{ctrlselectionScreen>/Currency}"
+                    numberState="{= ${ExtendedPrice} > 100 ? 'Success' : 'Warning' }"
+
+                    />
+                    
+                </items>
+            </List>
+            </Panel>
         </content >
     </Page>
 </mvc:View>

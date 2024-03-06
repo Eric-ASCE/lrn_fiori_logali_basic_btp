@@ -15,6 +15,9 @@ server:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
+        backend:
+          - path: /northwind
+            url: https://nortwindinvoices.dest  
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
